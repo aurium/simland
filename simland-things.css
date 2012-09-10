@@ -1,0 +1,459 @@
+
+.square.odd.grass, .square.odd.tree {
+  background: #8C5;
+}
+.square.even.grass, .square.even.tree {
+  background: #7B5;
+}
+
+.displaySquareType-color .square.sport {
+  background: #89A;
+}
+.sport .piece {
+  background: #AAA url(imgs/sport.png);
+  height: 14px;
+  margin-top: 3px;
+}
+
+.building .piece {
+  position: absolute;
+}
+.building .face1 {
+  width: 30px;
+  height: 14px;
+  bottom: 3px;
+  left: 3px;
+  -webkit-transform-origin: bottom left;
+  -moz-transform-origin: bottom left;
+  -o-transform-origin: bottom left;
+  transform-origin: bottom left;
+  -webkit-transform: matrix(1,-1, 0,1, 0,0);
+  -moz-transform: matrix(1,-1, 0,1, 0,0);
+  -o-transform: matrix(1,-1, 0,1, 0,0);
+  transform: matrix(1,-1, 0,1, 0,0);
+  background: #E00 url(imgs/building-face1.png);
+  border-top-right-radius: 2px;
+}
+.building .face2 {
+  width: 30px;
+  height: 14px;
+  bottom: 3px;
+  left: 3px;
+  -webkit-transform-origin: bottom left;
+  -moz-transform-origin: bottom left;
+  -o-transform-origin: bottom left;
+  transform-origin: bottom left;
+  -webkit-transform: matrix(1,-1, -1,0, 0,0);
+  -moz-transform: matrix(1,-1, -1,0, 0,0);
+  -o-transform: matrix(1,-1, -1,0, 0,0);
+  transform: matrix(1,-1, -1,0, 0,0);
+  background: #C00 url(imgs/building-face2.png);
+  border-top-right-radius: 2px;
+}
+.building .top {
+  width: 14px;
+  height: 14px;
+  top: -26px;
+  left: 32px;
+  background: #E66;
+}
+
+.tree1 {
+  width: 0px;
+  height: 0px;
+  border-left: 6px solid #080;
+  border-top: 10px solid transparent;
+  -webkit-transform: matrix(1,0.6, -1.3,1, 8,-3);
+  -moz-transform: matrix(1,0.6, -1.3,1, 8,-3);
+  -o-transform: matrix(1,0.6, -1.3,1, 8,-3);
+  transform: matrix(1,0.6, -1.3,1, 8,-3);
+}
+.tree2 {
+  width: 0px;
+  height: 0px;
+  border-left: 6px solid #070;
+  border-top: 10px solid transparent;
+  -webkit-transform: matrix(1,0.6, -1.3,1, 17,-7);
+  -moz-transform: matrix(1,0.6, -1.3,1, 17,-7);
+  -o-transform: matrix(1,0.6, -1.3,1, 17,-7);
+  transform: matrix(1,0.6, -1.3,1, 17,-7);
+}
+.tree3 {
+  width: 0px;
+  height: 0px;
+  border-left: 6px solid #090;
+  border-top: 10px solid transparent;
+  -webkit-transform: matrix(1,0.6, -1.3,1, 9,-14);
+  -moz-transform: matrix(1,0.6, -1.3,1, 9,-14);
+  -o-transform: matrix(1,0.6, -1.3,1, 9,-14);
+  transform: matrix(1,0.6, -1.3,1, 9,-14);
+}
+
+.road .piece {
+  background: #555;
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  display: none;
+}
+.road .piece.north {
+  top: 5px;
+  left: 0px;
+  width: 75%;
+  border-radius: 0 5px 5px 0;
+}
+.road .piece.south {
+  top: 5px;
+  right: 0px;
+  width: 75%;
+  border-radius: 5px 0 0 5px;
+}
+.road .piece.west {
+  top: 0px;
+  left: 5px;
+  height: 75%;
+  border-radius: 0 0 5px 5px;
+}
+.road .piece.east {
+  bottom: 0px;
+  left: 5px;
+  height: 75%;
+  border-radius: 5px 5px 0 0;
+}
+.road .connNorth .piece.north {
+  display: block;
+}
+.road .connSouth .piece.south {
+  display: block;
+}
+.road .noConn .piece.west, .road .connWest .piece.west {
+  display: block;
+}
+.road .noConn .piece.east, .road .connEast .piece.east {
+  display: block;
+}
+
+.displaySquareType-color .square.farm,
+.displaySquareType-color .square.garner {
+  background: #6D0;
+}
+.farm .piece {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #840;
+  position: absolute;
+}
+.farm .fence1 {
+  background: #6D0;
+}
+.farm .fence2 {
+  border: 1px dotted #840;
+  top: -1px;
+  left: 1px;
+}
+.farm .fence3 {
+  border: 1px dotted #840;
+  top: -2px;
+  left: 2px;
+}
+.farm .fence4 {
+  top: -3px;
+  left: 3px;
+}
+
+.garner .p1 {
+  width: 30px;
+  height: 20px;
+  position: absolute;
+  border-radius: 10px;
+  background: #888;
+  -webkit-transform: matrix(0.6,-0.6, 0.7,0.6, -1,-3);
+  -moz-transform: matrix(0.6,-0.6, 0.7,0.6, -1,-3);
+  -o-transform: matrix(0.6,-0.6, 0.7,0.6, -1,-3);
+  transform: matrix(0.6,-0.6, 0.7,0.6, -1,-3);
+  box-shadow: inset -4px -2px 10px #444;
+}
+.garner .p2 {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: -1px;
+  background: #999;
+  border-radius: 10px;
+}
+
+.displaySquareType-color .square.factory {
+  background: #ED8;
+}
+.displaySquareType-color .square.powerCoal {
+  background: #FE5;
+}
+.factory .building .face1, .powerCoal .building .face1 {
+  width: 13px;
+  background-color: #AAA;
+}
+.factory .building .face2, .powerCoal .building .face2 {
+  width: 13px;
+  background-color: #999;
+}
+.factory .building .top, .powerCoal .building .top {
+  line-height: 14px;
+  font-size: 16px;
+  text-align: center;
+  top: -9px;
+  left: 15px;
+  background-color: #777;
+}
+.factory .building .chimney, .powerCoal .building .chimney {
+  width: 4px;
+  height: 10px;
+  background: #999;
+  border-radius: 2px;
+  -webkit-transform: matrix(0.6,0.5, -1,1, 6,-5);
+  -moz-transform: matrix(0.6,0.5, -1,1, 6,-5);
+  -o-transform: matrix(0.6,0.5, -1,1, 6,-5);
+  transform: matrix(0.6,0.5, -1,1, 6,-5);
+}
+.factory .building .smoke, .powerCoal .building .smoke {
+  position: absolute;
+  top: -14px;
+  left: 9px;
+  color: transparent;
+  text-shadow: 0 0 3px #000, 0 0 3px #000;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-name: smoke;
+  -webkit-animation-iteration-count: infinite;
+}
+@-webkit-keyframes smoke {
+  0% {
+    letter-spacing: -3px;
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    letter-spacing: 3px;
+    opacity: 0.1;
+  }
+}
+.powerCoal .building .face1, .powerCoal .building .face2 {
+  background-image: none;
+  font-size: 18px;
+  line-height: 14px;
+  color: #FFF;
+  text-shadow: 1px 2px 0px #888;
+}
+.powerCoal .building .face2 {
+  color: #DDD;
+  text-shadow: -1px -1px 0px #777;
+}
+
+.displaySquareType-color .square.house {
+  background: #69B;
+}
+.house .building {
+  background: #0B0;
+  border: 1px solid #090;
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
+.house .building .face1 {
+  background: #DDD url(imgs/home-face1.png) no-repeat;
+  bottom: 2px;
+  left: 2px;
+  width: 6px;
+  height: 10px;
+}
+.house .building .face2 {
+  background: #CCC url(imgs/home-face2.png);
+  bottom: 2px;
+  left: 2px;
+  width: 6px;
+  height: 10px;
+}
+.house .building .top {
+  width: 10px;
+  height: 10px;
+  text-align: center;
+  top: auto;
+  bottom: 7px;
+  left: 7px;
+  background: #DDD;
+}
+.house .building .roof1 {
+  background: #640;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 10px;
+  height: 6px;
+  -webkit-transform: matrix(1,0, 0.5,0.5, 1,-2);
+}
+.house .building .roof2 {
+  background: #860;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 10px;
+  height: 6px;
+  -webkit-transform: matrix(1,0, 0.4,-1.2, 1.5,3);
+}
+
+.displaySquareType-color .square.shopping {
+  background: #6B9;
+}
+.shopping .building .face1 {
+  background-color: #BBB;
+  width: 21px;
+}
+.shopping .building .face2 {
+  background-color: #AAA;
+  width: 21px;
+}
+.shopping .building .top {
+  line-height: 14px;
+  font-size: 14px;
+  text-align: center;
+  top: -17px;
+  left: 23px;
+  color: #090;
+  background-color: #CCC;
+}
+
+.displaySquareType-color .square.hospital {
+  background: #C77;
+}
+.hospital .building .face1 {
+  background-color: #EAEAEA;
+  width: 17px;
+}
+.hospital .building .face2 {
+  background-color: #E0E0E0;
+  width: 17px;
+}
+.hospital .building .top {
+  line-height: 14px;
+  font-size: 14px;
+  text-align: center;
+  top: -13px;
+  left: 19px;
+  color: #D00;
+  background-color: #F6F6F6;
+}
+
+.displaySquareType-color .square.school {
+  background: #C77;
+}
+.school .building .face1 {
+  background-color: #8AC;
+  width: 13px;
+}
+.school .building .face2 {
+  background-color: #79B;
+  width: 13px;
+}
+.school .building .top {
+  background-color: #9BD;
+  line-height: 10px;
+  font-size: 10px;
+  text-align: center;
+  top: -9px;
+  left: 15px;
+  color: #222;
+}
+.school .top span {
+  display: block;
+  -webkit-transform: matrix(1,0, 0.4,-1.2, 1.5,3);
+}
+
+.displaySquareType-color .square.police {
+  background: #C77;
+}
+.police .building .face1 {
+  width: 13px;
+}
+.police .building .face2 {
+  width: 13px;
+}
+.police .building .top {
+  line-height: 14px;
+  font-size: 16px;
+  text-align: center;
+  top: -9px;
+  left: 15px;
+  color: #FD0;
+}
+
+.displaySquareType-color .square.powerWind {
+  background: #FE5;
+}
+.powerWind .basis {
+  width: 22px;
+  height: 5px;
+  background: #BBB;
+  border-radius: 3px;
+  -webkit-transform: matrix(1,-1, 0.7,0.5, 7,-1);
+  -moz-transform: matrix(1,-1, 0.7,0.5, 7,-1);
+  -o-transform: matrix(1,-1, 0.7,0.5, 7,-1);
+  transform: matrix(1,-1, 0.7,0.5, 7,-1);
+  position: relative;
+}
+
+.powerWind .helix1, .powerWind .helix2, .powerWind .helix3 {
+  background: #DDD;
+  width: 12px;
+  height: 3px;
+  border-radius: 3px;
+  position: absolute;
+  top: -2px;
+  left: 0px;
+  -webkit-transform-origin: center left;
+  -moz-transform-origin: center left;
+  -o-transform-origin: center left;
+  transform-origin: center left;
+}
+.powerWind .helix2 {
+  -webkit-transform: rotate(120deg);
+  -mox-transform: rotate(120deg);
+  -o-transform: rotate(120deg);
+  transform: rotate(120deg);
+}
+.powerWind .helix3 {
+  -webkit-transform: rotate(240deg);
+  -moz-transform: rotate(240deg);
+  -o-transform: rotate(240deg);
+  transform: rotate(240deg);
+}
+
+.powerWind .helixGroup {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  -webkit-transform-origin: center left;
+  -moz-transform-origin: center left;
+  -o-transform-origin: center left;
+  transform-origin: center left;
+  -webkit-animation-duration: 5s;
+  -webkit-animation-name: helixSpin;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+}
+@-webkit-keyframes helixSpin {
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+

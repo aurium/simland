@@ -1,0 +1,216 @@
+@import url("simland-things.css");
+
+body {
+  background: #666;
+  color: #EEE;
+  font-family: "Liberation Sans", Arial, sans-serif;
+  font-size: 12px;
+  padding: 0px;
+  margin: 0px;
+}
+
+#land {
+  margin: auto;
+  position: relative;
+}
+
+.ctrlBoxBorder {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  background: #888 url(imgs/icons/config.png) 50% 50%;
+  border-left: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  border-bottom-left-radius: 8px;
+  min-width: 24px;
+  min-height: 24px;
+  text-shadow: 1px 1px 0 #000;
+}
+.ctrlBoxBorder:hover {
+  background: rgba(127,127,127,0.8);
+}
+
+.ctrlBox {
+  display: none;
+  padding: 5px 12px;
+}
+.ctrlBoxBorder:hover .ctrlBox {
+  display: block;
+}
+
+.ctrlBox .opt {
+  padding: 8px 0px;
+}
+
+.buildOptsBoxBorder {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: #888 url(imgs/icons/build.png) 50% 50%;
+  border-right: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  border-bottom-right-radius: 8px;
+  min-width: 24px;
+  min-height: 24px;
+  text-shadow: 1px 1px 0 #000;
+}
+.buildOptsBoxBorder:hover {
+  background: rgba(127,127,127,0.8);
+}
+
+.buildOptsBox {
+  display: none;
+  padding: 6px;
+}
+
+.buildOptsBoxBorder:hover .buildOptsBox {
+  display: block;
+}
+
+.buildOptsBox div {
+  cursor: pointer;
+  padding: 3px 5px;
+  margin: 1px 0px;
+  border-radius: 3px;
+}
+.buildOptsBox div:hover {
+  background: rgba(255,255,255,0.3);
+}
+.buildOptsBox div.selected {
+  background: rgba(0,100,200,0.4);
+}
+.buildOptsBox div.selected:hover {
+  background: rgba(50,200,255,0.4);
+}
+
+.infoBox {
+  position: fixed;
+  bottom: 18px;
+  left: 0px;
+  background: rgba(100,100,100,0.8);
+  border-top: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+  border-top-right-radius: 8px;
+  text-shadow: 1px 1px 0 #000;
+  padding: 2px 5px;
+}
+.showInfoBox-false .infoBox {
+  display: none;
+}
+
+.status {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  background: #555;
+  border-top: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+  border-top-right-radius: 8px;
+  text-shadow: 1px 1px 0 #000;
+  padding: 2px 5px;
+  font-size: 11px;
+}
+
+.status div {
+  display: inline-block;
+}
+
+#hapyness span {
+  position: relative;
+  top: 1px;
+  font-size: 16px;
+  line-height: 14px;
+  font-weight: normal;
+}
+
+.visibleLand {
+  background: #BBB;
+}
+
+.landDimention {
+  position:absolute;
+  margin: auto;
+  -webkit-transform: matrix(1,-0.6, 1,0.6, 0,0);
+  -moz-transform: matrix(1,-0.6, 1,0.6, 0,0);
+  -o-transform: matrix(1,-0.6, 1,0.6, 0,0);
+  transform: matrix(1,-0.6, 1,0.6, 0,0);
+}
+
+.eventCatcher {
+}
+
+.square {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  position: relative;
+}
+
+.square.odd {
+  background: #BBB;
+}
+.square.even {
+  background: #AAA;
+}
+
+.eventCatcher .square:hover {
+  background: rgba(255,200,0,0.3);
+  outline: 2px solid rgba(255,220,0,0.6);
+}
+.square.hover .piece {
+  outline: 2px solid rgba(255,220,0,0.9);
+}
+
+.objOpacity-translucent .gameObj {
+  opacity: 0.7;
+}
+.objOpacity-glass .gameObj {
+  opacity: 0.3;
+}
+
+.blackBlock {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  background: rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+.window {
+  display: inline-block;
+  margin-top: 5%;
+  min-height: 20%;
+  max-height: 60%;
+  overflow: auto;
+  background: #EEE;
+  color: #444;
+  padding: 0px 20px 15px 20px;
+  border: 4px solid #BBB;
+  position: relative;
+  text-align: left;
+}
+
+.window .title {
+  color: #888;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+.windowClose {
+  position: absolute;
+  top: 1px;
+  right: 2px;
+  cursor: pointer;
+  color: #C44;
+}
+
+.powerPlantSelect .option {
+  border: 1px solid #AAA;
+  background: #DDD;
+  padding: 5px;
+  margin: 5px 0px;
+  cursor: pointer;
+}
+

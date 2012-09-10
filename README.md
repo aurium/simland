@@ -1,4 +1,6 @@
-simland
+SimLand
 =======
 
-A webbrowser game inspired by a classic
+A web browser game inspired by a classic.
+
+This game runs entirely from your browser.
