@@ -235,19 +235,35 @@
   -webkit-animation-duration: 3s;
   -webkit-animation-name: smoke;
   -webkit-animation-iteration-count: infinite;
+  -moz-animation-duration: 3s;
+  -moz-animation-name: smoke;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-duration: 3s;
+  -o-animation-name: smoke;
+  -o-animation-iteration-count: infinite;
+  animation-duration: 3s;
+  animation-name: smoke;
+  animation-iteration-count: infinite;
 }
 @-webkit-keyframes smoke {
-  0% {
-    letter-spacing: -3px;
-    opacity: 0.2;
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    letter-spacing: 3px;
-    opacity: 0.1;
-  }
+  0%   { opacity: 0.2; letter-spacing: -3px }
+  20%  { opacity: 1.0                       }
+  100% { opacity: 0.1; letter-spacing: 3px  }
+}
+@-moz-keyframes smoke {
+  0%   { opacity: 0.2; letter-spacing: -3px }
+  20%  { opacity: 1.0                       }
+  100% { opacity: 0.1; letter-spacing: 3px  }
+}
+@-o-keyframes smoke {
+  0%   { opacity: 0.2; letter-spacing: -3px }
+  20%  { opacity: 1.0                       }
+  100% { opacity: 0.1; letter-spacing: 3px  }
+}
+@keyframes smoke {
+  0%   { opacity: 0.2; letter-spacing: -3px }
+  20%  { opacity: 1.0                       }
+  100% { opacity: 0.1; letter-spacing: 3px  }
 }
 .powerCoal .building .face1, .powerCoal .building .face2 {
   background-image: none;
@@ -309,6 +325,9 @@
   width: 10px;
   height: 6px;
   -webkit-transform: matrix(1,0, 0.5,0.5, 1,-2);
+  -moz-transform: matrix(1,0, 0.5,0.5, 1,-2);
+  -o-transform: matrix(1,0, 0.5,0.5, 1,-2);
+  transform: matrix(1,0, 0.5,0.5, 1,-2);
 }
 .house .building .roof2 {
   background: #860;
@@ -318,6 +337,9 @@
   width: 10px;
   height: 6px;
   -webkit-transform: matrix(1,0, 0.4,-1.2, 1.5,3);
+  -moz-transform: matrix(1,0, 0.4,-1.2, 1.5,3);
+  -o-transform: matrix(1,0, 0.4,-1.2, 1.5,3);
+  transform: matrix(1,0, 0.4,-1.2, 1.5,3);
 }
 
 .displaySquareType-color .square.commerce,
@@ -390,6 +412,9 @@
 .school .top span {
   display: block;
   -webkit-transform: matrix(0.4,0, -0.4,0.55, -2.5,5);
+  -moz-transform: matrix(0.4,0, -0.4,0.55, -2.5,5);
+  -o-transform: matrix(0.4,0, -0.4,0.55, -2.5,5);
+  transform: matrix(0.4,0, -0.4,0.55, -2.5,5);
 }
 
 .displaySquareType-color .square.police {
@@ -463,19 +488,33 @@
   -webkit-animation-name: helixSpin;
   -webkit-animation-timing-function: linear;
   -webkit-animation-iteration-count: infinite;
+  -moz-animation-duration: 5s;
+  -moz-animation-name: helixSpin;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-duration: 5s;
+  -o-animation-name: helixSpin;
+  -o-animation-timing-function: linear;
+  -o-animation-iteration-count: infinite;
+  animation-duration: 5s;
+  animation-name: helixSpin;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 @-webkit-keyframes helixSpin {
-  from {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
+  from { -webkit-transform: rotate(0deg)   }
+  to   { -webkit-transform: rotate(360deg) }
+}
+@-moz-keyframes helixSpin {
+  from { -moz-transform: rotate(0deg)   }
+  to   { -moz-transform: rotate(360deg) }
+}
+@-o-keyframes helixSpin {
+  from { -o-transform: rotate(0deg)   }
+  to   { -o-transform: rotate(360deg) }
+}
+@keyframes helixSpin {
+  from { transform: rotate(0deg)   }
+  to   { transform: rotate(360deg) }
 }
 
