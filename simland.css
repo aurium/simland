@@ -3,7 +3,7 @@
 body {
   background: #666;
   color: #EEE;
-  font-family: "Liberation Sans", Arial, sans-serif;
+  font-family: "Liberation Sans", Arial, "Droid Sans", sans-serif;
   font-size: 12px;
   padding: 0px;
   margin: 0px;
@@ -115,7 +115,7 @@ body {
   display: inline-block;
 }
 
-#hapyness span {
+#happiness span {
   position: relative;
   top: 1px;
   font-size: 16px;
@@ -187,15 +187,18 @@ body {
   background: #EEE;
   color: #444;
   padding: 0px 20px 15px 20px;
-  border: 4px solid #BBB;
   position: relative;
   text-align: left;
+  border: 4px solid #DDD;
+  border-radius: 7px;
+  box-shadow: inset 0 0 60px #888, 3px 3px 20px #000;
 }
 
 .window .title {
   color: #888;
   margin: 0 0 10px 0;
   text-align: center;
+  text-shadow: 1px 1px 0 #FFF;
 }
 
 .windowClose {
@@ -203,9 +206,15 @@ body {
   top: 1px;
   right: 2px;
   cursor: pointer;
+  font-size: 18px;
+  line-height: 18px;
   color: #C44;
 }
+.windowClose:hover {
+  color: #E33;
+}
 
+.pubServSelect .option,
 .powerPlantSelect .option {
   border: 1px solid #AAA;
   background: #DDD;
@@ -213,4 +222,50 @@ body {
   margin: 5px 0px;
   cursor: pointer;
 }
+.pubServSelect .option:hover,
+.powerPlantSelect .option:hover {
+  background: #CCC;
+}
+.pubServSelect .option {
+  width: 130px;
+  float: left;
+  margin: 0px;
+}
+.pubServSelect .option:nth-child(even) {
+  float: none;
+  margin: 5px 0px 5px 147px;
+}
 
+.sadnessReport h2 {
+  text-align: center;
+  margin: 0px;
+}
+.sadnessReport .date {
+  text-align: right;
+  font-size: 11px;
+}
+.sadnessReport .face {
+  text-align: center;
+  font-size: 30px;
+  line-height: 30px;
+}
+.sadnessReport ul, .sadnessReport li {
+  margin: 0px;
+  padding: 0px 0px 0px 5px;
+  font-size: 14px;
+}
+.sadnessReport li {
+  padding: 3px 0px;
+  font-family: "Arial Narrow", "Liberation Sans Narrow", "Handset Condensed", "DejaVu Sans Semi-Condensed", sans-serif;
+}
+
+.gameover {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -75px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #DDD;
+  text-shadow: 0 0 10px #000;
+}

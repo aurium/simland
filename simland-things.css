@@ -133,9 +133,15 @@
   display: block;
 }
 
+.displaySquareType-color .square.country,
 .displaySquareType-color .square.farm,
-.displaySquareType-color .square.garner {
+.displaySquareType-color .square.silo {
   background: #6D0;
+}
+.displaySquareType-color .square.odd.country,
+.displaySquareType-color .square.odd.farm,
+.displaySquareType-color .square.odd.silo {
+  background: #6FDF0F;
 }
 .farm .piece {
   width: 18px;
@@ -161,7 +167,7 @@
   left: 3px;
 }
 
-.garner .p1 {
+.silo .p1 {
   width: 30px;
   height: 20px;
   position: absolute;
@@ -173,7 +179,7 @@
   transform: matrix(0.6,-0.6, 0.7,0.6, -1,-3);
   box-shadow: inset -4px -2px 10px #444;
 }
-.garner .p2 {
+.silo .p2 {
   width: 20px;
   height: 20px;
   position: absolute;
@@ -182,9 +188,15 @@
   border-radius: 10px;
 }
 
+.displaySquareType-color .square.industry,
 .displaySquareType-color .square.factory {
+  background: #E0D080;
+}
+.displaySquareType-color .square.odd.industry,
+.displaySquareType-color .square.odd.factory {
   background: #ED8;
 }
+
 .displaySquareType-color .square.powerCoal {
   background: #FE5;
 }
@@ -249,8 +261,13 @@
   text-shadow: -1px -1px 0px #777;
 }
 
+.displaySquareType-color .square.resid,
 .displaySquareType-color .square.house {
   background: #69B;
+}
+.displaySquareType-color .square.odd.resid,
+.displaySquareType-color .square.odd.house {
+  background: #70A0C0;
 }
 .house .building {
   background: #0B0;
@@ -303,8 +320,13 @@
   -webkit-transform: matrix(1,0, 0.4,-1.2, 1.5,3);
 }
 
+.displaySquareType-color .square.commerce,
 .displaySquareType-color .square.shopping {
-  background: #6B9;
+  background: #60C090;
+}
+.displaySquareType-color .square.odd.commerce,
+.displaySquareType-color .square.odd.shopping {
+  background: #6C9;
 }
 .shopping .building .face1 {
   background-color: #BBB;
@@ -367,7 +389,7 @@
 }
 .school .top span {
   display: block;
-  -webkit-transform: matrix(1,0, 0.4,-1.2, 1.5,3);
+  -webkit-transform: matrix(0.4,0, -0.4,0.55, -2.5,5);
 }
 
 .displaySquareType-color .square.police {
