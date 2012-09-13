@@ -259,6 +259,10 @@ body {
   font-family: "Arial Narrow", "Liberation Sans Narrow", "Handset Condensed", "DejaVu Sans Semi-Condensed", sans-serif;
 }
 
+.sadnessReport .btAutoShow {
+  text-align: right;
+}
+
 .gameover {
   position: fixed;
   top: 50%;

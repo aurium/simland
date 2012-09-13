@@ -465,7 +465,7 @@
 }
 .powerWind .helix2 {
   -webkit-transform: rotate(120deg);
-  -mox-transform: rotate(120deg);
+  -moz-transform: rotate(120deg);
   -o-transform: rotate(120deg);
   transform: rotate(120deg);
 }
