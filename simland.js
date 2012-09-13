@@ -123,7 +123,8 @@ SimLand.prototype.tic = function() {
     if ( this.foodStock < 0 ) this.foodStock = 0;
     this.privateInitiativeNewBuildings();
     this.bornAndDie();
-    this.moveDwellers()
+    this.moveDwellers();
+    this.somethingWasDestroyed();
   } catch(e) {
     console.log(e.stack, e);
   }
@@ -131,6 +132,7 @@ SimLand.prototype.tic = function() {
   this.updateStatus();
   var me = this;
   if ( this.calcHappiness() == 0 ) return this.sadGameOver();
+  if ( this.countPopulation() == 0 ) return this.popGameOver();
   this.ticTimeout = setTimeout(function(){ me.tic() }, this.monthSecsDelay*1000);
   if ( this.calcHappiness() < 0.25 && this.autoShowSadnessReport )
     this.displaySadnessReport();
@@ -143,6 +145,26 @@ SimLand.prototype.moveDwellers = function() {
   });
   houses[0].dwellers++;
   houses[houses.length-1].dwellers--;
+};
+
+SimLand.prototype.somethingWasDestroyed = function() {
+  var probability = (this.date[0]-2005)/100;
+  if ( probability > 0.5 ) probability = 0.5;
+  if ( Math.random() < probability ) {
+    var things = this.buildings();
+    this.getSquareByType('road').forEach(function(sq){ things.push(sq) });
+    var thing = arrayRand(things)[0];
+    if ( thing ) {
+      var fName = gameThings[thing.type].fName;
+      thing.clear(true);
+      var win = createWindow('"Shit happens"&trade;');
+      makeEl('div', { parent:win, innerHTML:
+        '<p><b>Oh my ...!!!</b></p>'+
+        '<p>The '+fName+' at lat '+thing.getLat()+', lon '+thing.getLon()+
+        ' was destructed.</p>'
+      });
+    }
+  }
 };
 
 SimLand.prototype.privateInitiativeNewBuildings = function() {
@@ -819,9 +841,8 @@ SimLand.prototype.buildings = function() {
   var squareList = [];
   for ( var x=0; x<this.landSize; x++ ) {
     for ( var y=0; y<this.landSize; y++ ) {
-      var type = this.squares[x][y].type;
-      var gameThing = gameThings[type];
-      if ( gameThing && type != 'tree' && type != 'road' ) {
+      var gameThing = gameThings[ this.squares[x][y].type ];
+      if ( gameThing && gameThing.parent ) {
         squareList.push(this.squares[x][y]);
       }
     }
@@ -981,7 +1002,7 @@ SimLand.prototype.displaySadnessReport = function() {
   };
 };
 
-SimLand.prototype.sadGameOver = function() {
+SimLand.prototype.gameOver = function(txt) {
   this.setTool('pointer');
   this.gameover = true;
   this.buildOptsBox.style.display = 'none';
@@ -989,12 +1010,21 @@ SimLand.prototype.sadGameOver = function() {
   var win = createWindow('Game Over', function(){
     makeEl('div', { class:'gameover', innerHTML:'Game Over', parent:game.baseEl });
   });
-  makeEl('div', {
-    class: 'gameoverInfo',
-    innerHTML: '<p>The people happiness become 0.</p>'+
-               '<p>Your ass was kicked until your death.</p>',
-    parent: win
-  });
+  makeEl('div', { class: 'gameoverInfo', innerHTML: txt, parent: win });
+};
+
+SimLand.prototype.sadGameOver = function() {
+  this.gameOver(
+    '<p>The people happiness become 0.</p>'+
+    '<p>Your ass was kicked until your death.</p>'
+  );
+};
+
+SimLand.prototype.popGameOver = function() {
+  this.gameOver(
+    '<p>All the people die.</p>'+
+    '<p>Welcome to Zombie Town.</p>'
+  );
 };
 
 SimLand.prototype.displayHelp = function() {
@@ -1007,8 +1037,19 @@ SimLand.prototype.displayHelp = function() {
   makeEl('div', { parent: win, innerHTML:
     '<h3>Building</h3>'+
     '<p>Any public service has a maintenance cost, for you to pay.</p>'+
-    '<p>A house, a industry, or any other private initiative will be built '+
-    'only if there are demand and manpower.</p>'
+    '<p>A house, a industry, or any other private initiative will be built'+
+    ' only if there are demand and manpower.</p>'+
+    '<h3>Pollution may kill you</h3>'+
+    '<p>Pay attention! Pollution will appear fast with your city growing.'+
+    ' Trees can save the population and your job.</p>'+
+    '<h3>Cheating</h3>'+
+    '<p>You can change some game attributes by accessing the <code>land</code>'+
+    ' object at the javascript console.</p>'+
+    '<p>Try to open the javascript console pressing F12 key or some browser menu'+
+    ' item, then run:<br><code>land.money = 1000000</code><br>'+
+    ' (the status information will not be updated until the next month)</p>'+
+    '<h3>Time to fall</h3>'+
+    '<p>Some day some building will be destructed. You have been warned.</p>'
   });
 };
 
@@ -1127,7 +1168,7 @@ Square.prototype.clear = function(gameLoad) {
     if ( this.game.money < gameThings.clear.cost ) {
       alert('You can\'t pay for destruct and clear this area.'+
             '\n($'+gameThings.clear.cost+')');
-      return;
+      return false;
     }
     this.game.money -= gameThings.clear.cost;
   }
@@ -1145,10 +1186,12 @@ Square.prototype.clear = function(gameLoad) {
     gameThings.road.update(squares[x][y-1]);
   if ( squares[x][y+1] && squares[x][y+1].type == 'road' )
     gameThings.road.update(squares[x][y+1]);
+  return true;
 };
 
 Square.prototype.add = function(type, gameLoad) {
   var gameThing = gameThings[type];
+  if ( !this.clear(gameLoad) ) return this;
   if ( !gameLoad ) {
     if ( gameThing.cost ) {
       if ( this.game.money < gameThing.cost ) {
@@ -1159,7 +1202,6 @@ Square.prototype.add = function(type, gameLoad) {
       this.game.updateStatus();
     }
   }
-  this.clear(gameLoad);
   gameThing.add(this);
   this.visibleEl.className = this.classNameOrig +' '+ this.type;
   return this;
