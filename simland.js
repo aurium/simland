@@ -65,6 +65,7 @@ exports.SimLand = function SimLand(baseElId, landSize) {
   this.cache = {};
   this.goodsStock = 10;
   this.foodStock = 20;
+  this.autoShowSadnessReport = true;
   this.baseEl = document.getElementById(baseElId);
   this.baseEl.style.width = (landSize*40)+'px';
   this.baseEl.style.height = (landSize*24+50)+'px';
@@ -96,7 +97,7 @@ exports.SimLand = function SimLand(baseElId, landSize) {
   this.cache = {};
   this.updateStatus();
   var me = this;
-  setTimeout(function(){ me.tic() }, this.monthSecsDelay*1000);
+  this.ticTimeout = setTimeout(function(){ me.tic() }, this.monthSecsDelay*1000);
 };
 
 SimLand.prototype.tic = function() {
@@ -131,7 +132,8 @@ SimLand.prototype.tic = function() {
   var me = this;
   if ( this.calcHappiness() == 0 ) return this.sadGameOver();
   this.ticTimeout = setTimeout(function(){ me.tic() }, this.monthSecsDelay*1000);
-  if ( this.calcHappiness() < 0.25 ) this.displaySadnessReport();
+  if ( this.calcHappiness() < 0.25 && this.autoShowSadnessReport )
+    this.displaySadnessReport();
 };
 
 /** @desc someone move from a full home to another with a empty bathroom */
@@ -382,6 +384,7 @@ SimLand.prototype.calcProductionFor = function(square) {
       pctInput = Math.round( 100 * this.goodsStock / reqGoods );
       consumption.goods = gameThing[needed] * pctInput / 100;
       if ( pctInput < 3 ) pctInput = 3; // raw material can be collected
+      pctInput += ( 100-pctInput ) / 3; // we really want some raw material!
       if ( gameThing.needGoodsOrFood && pctInput<100 ) {
         var reqGoF = this.calcRequiredGoodsOrFood();
         var pop = this.countPopulation();
@@ -856,10 +859,10 @@ SimLand.prototype.calcHappiness = function(whithFace) {
     var taxSad = round2( (taxSum-10) / 20 );
     this.sadnessReport.push([ 'taxes', taxSad ]);
     var pop = this.countPopulation();
-    var starveSad = round2( (1 - this.foodStock/pop) / 1.8 );
+    var starveSad = round2( (1 - this.foodStock/pop) / 2 );
     if ( starveSad < 0 ) starveSad = 0;
     this.sadnessReport.push([ 'food production', starveSad ]);
-    var goodsSad = (1 - this.goodsStock/pop) / 5;
+    var goodsSad = (1 - this.goodsStock/pop) / 6;
     if ( pop < 150 ) goodsSad /= (150-pop);
     if ( goodsSad < 0 ) goodsSad = 0;
     goodsSad = round2(goodsSad);
@@ -905,7 +908,12 @@ SimLand.prototype.calcHappiness = function(whithFace) {
     if ( shoppingSad < 0 ) shoppingSad = 0;
     shoppingSad = round2(shoppingSad);
     this.sadnessReport.push([ 'commerce options', shoppingSad ]);
-    // TODO: powerSad
+    var needPower = this.calcRequiredPower();
+    var prodPower = this.calcProducedPower();
+    var powerSad = ( 1 - prodPower/needPower ) / 2;
+    if ( powerSad < 0 ) powerSad = 0;
+    powerSad = round2(powerSad);
+    this.sadnessReport.push([ 'power production', powerSad ]);
     //var happiness = round2( 1 - pollutionSad - starveSad - transportSad - ... );
     var happiness = 1;
     this.sadnessReport.forEach(function(sad){ happiness -= sad[1] });
@@ -957,7 +965,20 @@ SimLand.prototype.displaySadnessReport = function() {
              ' <b>'+round2str(item[1]*100)+'%</b> of the people.</li>';
   });
   txt += '</ul>';
-  makeEl('div', { class:'sadnessReport', innerHTML:txt, parent:win });
+  var boxSad = makeEl('div', { class:'sadnessReport', innerHTML:txt, parent:win });
+  var boxBtAutoShow = makeEl('div', { class:'btAutoShow', parent:boxSad })
+  var idAutoShow = 'btAutoShow'+Math.random();
+  var btAutoShow = makeEl('input', {
+    id: idAutoShow, type: 'checkbox', parent: boxBtAutoShow
+  });
+  makeEl('label', {
+    innerHTML: 'Auto show this report when sadness is critical',
+    'for': idAutoShow, parent: boxBtAutoShow
+  });
+  btAutoShow.checked = this.autoShowSadnessReport;
+  btAutoShow.onclick = function () {
+    game.autoShowSadnessReport = this.checked;
+  };
 };
 
 SimLand.prototype.sadGameOver = function() {
