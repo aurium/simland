@@ -6,7 +6,9 @@ This game runs entirely from your browser.
 
 Any public service has a maintenance cost, for you to pay.
 A house, a industry, or any other private initiative will be built
-only if there are demand and manpower.
+only if there are demand and manpower. So, if you want more factories
+or shopping centers, create more residential area and let the
+population to grow.
 
 ## Pollution may kill you
 
@@ -18,7 +20,7 @@ Trees can save the population and your job.
 You can change some game attributes by accessing the <code>land</code>
 object at the javascript console. Try to open the javascript console
 pressing F12 key or some browser menu item, then run:
-    land.money = 1000000
+<pre><code> land.money = 1000000 </code></pre>
 (the status information will not be updated until the next month)
 
 ## Time to fall
