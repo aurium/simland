@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+
+var toBuild = {
+  'built/simland.js' : [ 'lib/helper.js', 'lib/simland.js', 'lib/square.js' ],
+  'built/simland.css' : [ 'lib/simland.css', 'lib/simland-things.css' ]
+};
+
+try {
+  fs.statSync('built');
+} catch(err) {
+  if (err.code=='ENOENT') fs.mkdirSync('built');
+  else throw err;
+}
+
+var licence = fs.readFileSync('lib/simland.js', 'utf8')
+                .toString().replace(/\*\/[\s\S]*$/, '*/');
+
+// TODO: replace by a real minifier
+function minify(code) {
+  return code.toString()
+             .replace(/\/\*([^*]*(\*(?!\/))?)*\*\//g,'') // multiline comments
+             .replace(/\/\/.*\n/g,'')  // in-line comments
+             .replace(/\s+/g,' ');     // join lines and remove multiple spaces
+}
+
+// TODO: protect UTF8 chars
+for ( target in toBuild ) {
+  var code;
+  if ( /\.js$/.test(target) ) {
+    code = licence+'\n(function (exports) {\n';
+  } else {
+    code = licence+'\n';
+  }
+  for( var piece,i=0; piece=toBuild[target][i]; i++ ) {
+    console.log( piece +( i==0 ? ' => ' : ' +> ' )+ target );
+    code += minify( fs.readFileSync(piece, 'utf8') );
+  }
+  if ( /\.js$/.test(target) ) code += '\n})(this);';
+  fs.writeFileSync(target, code, 'utf8');
+}
+
+try {
+  fs.statSync('built/imgs');
+} catch(err) {
+  if (err.code=='ENOENT') fs.symlinkSync('../imgs', 'built/imgs');
+  else throw err;
+}
+
