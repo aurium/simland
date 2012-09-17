@@ -1,0 +1,30 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>SimLand Test</title>
+  <link rel="stylesheet" href="mocha/mocha.css" />
+  <script src="mocha/mocha.js"></script>
+  <!--
+    If we need more powerfult test on future, download full mocha
+    from https://github.com/visionmedia/mocha and chai assertion
+    lib from https://github.com/chaijs/chai
+  -->
+  <script>mocha.setup('bdd')</script>
+  <script>
+    function assert(expr, msg) {
+      if (!expr) throw new Error(msg || 'failed');
+    }
+  </script>
+  <script src="../lib/helper.js"></script>
+  <script src="helper.test.js"></script>
+  <script>
+    onload = function(){
+      var runner = mocha.run();
+    };
+  </script>
+</head>
+<body>
+  <h1>SimLand Test</h1>
+  <div id="mocha"></div>
+</body>
+</html>
